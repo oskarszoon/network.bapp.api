@@ -19,3 +19,6 @@ nimble:restivus
 accounts-password
 templating
 underscore
+accounts:bitcoin
+check
+random

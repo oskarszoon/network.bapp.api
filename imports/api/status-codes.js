@@ -7,6 +7,13 @@ export const returnData = function(data) {
     return returnValue;
 };
 
+export const returnError = function(message, errorCode) {
+    let returnValue = _.clone(statusCodes[errorCode]);
+    returnValue.body.message = message;
+
+    return returnValue;
+};
+
 export const statusCodes = {};
 
 statusCodes.ok = {
