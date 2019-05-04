@@ -7,15 +7,16 @@ export const bapps = [
             bappVersion: 1,
             inputFields: {
                 image: {
-                    type: "image"
+                    type: "image",
+                    output: "binary" // binary / base64
                 }
             },
             protocol: [
                 "19HxigV4QyBv3tHpQVcUEQyq1pzZVdoAut",
-                "${image.content}",
+                "${image.data}",
                 "${image.type}",
                 "binary",
-                "${image.name}"
+                "${image.fileName}"
             ],
             template: '<div class="image"><img src="data:${s3};base64,${lb2}" /></div>',
             encrypt: false,
@@ -40,10 +41,14 @@ export const bapps = [
                     type: "location",
                     description: "Location of the site report"
                 },
-
                 report: {
                     type: "text",
                     description: "Site report"
+                },
+                files: {
+                    type: "image",
+                    multiple: true,
+                    upload: true // uploads files and references only txId's
                 }
             },
             protocol: [
