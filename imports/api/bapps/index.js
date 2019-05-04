@@ -19,6 +19,22 @@ Api.addRoute('bapps/search/:searchTerm', {
     }
 });
 
+Api.addRoute('bapps/search', {
+    authRequired: false
+}, {
+    get: {
+        authRequired: false,
+        action: function() {
+            try {
+                const bapps = searchBapps("");
+                return returnData(bapps);
+            } catch(e) {
+                return statusCodes.processingError;
+            }
+        }
+    }
+});
+
 Api.addRoute('bapps/:id', {
     authRequired: false
 }, {

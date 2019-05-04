@@ -5,7 +5,7 @@ export const bapps = [
         description: "Post an image from Bapps directly to the Bitstagram feed",
         definition: {
             bappVersion: 1,
-            fields: {
+            inputFields: {
                 image: {
                     type: "image"
                 }
@@ -31,7 +31,7 @@ export const bapps = [
         description: "Create an inspection report for a site",
         definition: {
             bappVersion: 1,
-            fields: {
+            inputFields: {
                 name: {
                     type: "text",
                     description: "Name of the site"
