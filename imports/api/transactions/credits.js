@@ -6,7 +6,7 @@ export const calcCreditsNeeded = function(transaction) {
     // TODO: integrate nChain service call for fees
 
     const size = transaction.join(' ').length;
-    return Math.round(size / 10000); // 1 credit per 10KB
+    return Math.ceil(size / 10000); // 1 credit per 10KB
 };
 
 export const creditsAvailable = function(userId, transaction) {
