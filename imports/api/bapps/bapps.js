@@ -58,7 +58,7 @@ export const bapps = [
             encrypt: false,
             sign: false,
             website: 'https://github.com/unwriter/B',
-            logo: 'https://api.bapp.network/images/b.png'
+            logo: 'https://api.bapp.network/images/b/logo.png'
         }
     },
     {
