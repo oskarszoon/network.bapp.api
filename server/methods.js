@@ -2,6 +2,7 @@ import { getBapp } from '../imports/api/bapps/get';
 import { searchBapps } from '../imports/api/bapps/search';
 import { sendTransaction } from '../imports/api/transactions/send';
 import { verifyTransaction } from '../imports/api/transactions/verify';
+import { creditsAvailable } from '../imports/api/transactions/credits';
 import Message from 'bsv/message';
 import bsv from 'bsv';
 
@@ -18,7 +19,11 @@ Meteor.methods({
         }
 
         if (verifyTransaction(transaction)) {
-            return sendTransaction(transaction);
+            if (creditsAvailable(this.userId, transaction)) {
+                return sendTransaction(transaction);
+            } else {
+                throw new Meteor.Error(500, 'No credits available for transaction');
+            }
         } else {
             throw new Meteor.Error(500, 'Could not verify transaction');
         }

@@ -1,6 +1,7 @@
 import datapay from 'datapay';
+import { deductCredits } from './credits';
 
-export const sendTransaction = function(transaction, callback) {
+const _sendTransaction = function(transaction, callback) {
     const paymentKeys = Meteor.settings.paymentKeys;
     const useKey = Math.floor((Math.random() * paymentKeys.length));
     datapay.send({
@@ -8,8 +9,14 @@ export const sendTransaction = function(transaction, callback) {
         pay: {
             key: paymentKeys[useKey]
         }
-    }, function(result) {
-        console.log('payment result', result);
-        callback(null, result);
+    }, function(err, hash) {
+        console.log('payment result', err, hash);
+        if (err) {
+            callback(err);
+        } else {
+            deductCredits(userId, transaction, hash);
+            callback(null, hash);
+        }
     });
 };
+export const sendTransaction = Meteor.wrapAsync(_sendTransaction);
