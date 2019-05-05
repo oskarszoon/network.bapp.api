@@ -36,3 +36,24 @@ export const deductCredits = function(userId, transaction, txId) {
         }
     });
 };
+
+export const getCredits = function(userId) {
+    const user = Meteor.users.findOne({_id: userId});
+    if (user && user.private) {
+        return user.private.credits;
+    }
+
+    return 0;
+};
+
+export const addCredits = function(userId, credits) {
+    Meteor.users.update({
+        _id: userId
+    },{
+        $inc: {
+            'private.credits': credits
+        }
+    });
+
+    return Meteor.users.findOne({_id: userId}).private.credits;
+};

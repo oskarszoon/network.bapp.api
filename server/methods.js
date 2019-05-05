@@ -2,7 +2,7 @@ import { getBapp } from '../imports/api/bapps/get';
 import { searchBapps } from '../imports/api/bapps/search';
 import { sendTransaction } from '../imports/api/transactions/send';
 import { verifyTransaction } from '../imports/api/transactions/verify';
-import { creditsAvailable } from '../imports/api/transactions/credits';
+import { creditsAvailable, getCredits, addCredits } from '../imports/api/transactions/credits';
 import Message from 'bsv/message';
 import bsv from 'bsv';
 
@@ -33,6 +33,19 @@ Meteor.methods({
             throw new Meteor.Error(404, "access denied");
         }
         return verifyTransaction(transaction);
+    },
+    'credits/get'() {
+        if (!this.userId) {
+            throw new Meteor.Error(404, "access denied");
+        }
+        return getCredits(this.userId);
+    },
+    'credits/add'(credits) {
+        // This is a fake function for now and will be integrated into in app purchase later
+        if (!this.userId) {
+            throw new Meteor.Error(404, "access denied");
+        }
+        return addCredits(this.userId, credits);
     },
     'create-user'(address, timestamp, signature) {
         check(address, String);
