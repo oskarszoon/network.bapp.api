@@ -22,7 +22,7 @@ directly to send transactions without Bapps credits.
 
 A Bapps definition consists of 4 elements that define how the protocol should be
 handled within the Bapps app.
-- protocol address (1BappsGysvZJ6iE5PgXUnA6S4XsGbWDSodr)
+- protocol address (1BappGysvZJ6iE5PgXUnA6S4XsGbWDSodr)
 - name of the protocol
 - Description of the protocol
 - A JSON definition of how the protocol should be rendered in Bapps
@@ -30,7 +30,7 @@ handled within the Bapps app.
 OP_RETURN syntax:
 ```
 OP_RETURN
-  1BappsGysvZJ6iE5PgXUnA6S4XsGbWDSodr
+  1BappGysvZJ6iE5PgXUnA6S4XsGbWDSodr
   [Address of protocol being described]
   [String name]
   [String description]
@@ -40,7 +40,7 @@ OP_RETURN
 Example of a Bapps OP_RETURN:
 ```
 OP_RETURN
-  1BappsGysvZJ6iE5PgXUnA6S4XsGbWDSodr
+  1BappGysvZJ6iE5PgXUnA6S4XsGbWDSodr
   19HxigV4QyBv3tHpQVcUEQyq1pzZVdoAut
   Bitstagram
   Post an image from Bapps directly to the Bitstagram feed

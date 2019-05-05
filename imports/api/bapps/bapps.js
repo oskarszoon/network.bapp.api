@@ -1,6 +1,6 @@
 export const bapps = [
     {
-        txId: "ba84be7e9e44dd1fa0ce9f85bf6e22265ba056f35dc23817883cff33af1f5f96",
+        txId: "8060fb9c851664daaa12161fa24f1e48d12209795005a008abfa50c45fb74318",
         protocolAddress: "19HxigV4QyBv3tHpQVcUEQyq1pzZVdoAut",
         name: "Bitstagram",
         description: "Post an image from Bapps directly to the Bitstagram feed",
@@ -11,7 +11,7 @@ export const bapps = [
                     id: "image",
                     type: "image",
                     required: true,
-                    output: "binary" // binary / base64
+                    output: "base64"
                 }
             ],
             protocol: [
@@ -42,7 +42,7 @@ export const bapps = [
                     id: "file",
                     type: "file",
                     required: true,
-                    output: "binary" // binary / base64
+                    output: "base64"
                 }
             ],
             protocol: [
