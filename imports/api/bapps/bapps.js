@@ -1,10 +1,11 @@
 export const bapps = [
     {
         txId: "fa84be7e9e44dd1fa0ce9f85bf6e22265ba056f35dc23817883cff33af1f5f96",
+        protocolAddress: "19HxigV4QyBv3tHpQVcUEQyq1pzZVdoAut",
         name: "Bitstagram",
         description: "Post an image from Bapps directly to the Bitstagram feed",
         definition: {
-            bappVersion: 1,
+            version: 1,
             inputFields: {
                 image: {
                     type: "image",
@@ -12,7 +13,6 @@ export const bapps = [
                     output: "binary" // binary / base64
                 }
             },
-            protocolAddress: "19HxigV4QyBv3tHpQVcUEQyq1pzZVdoAut",
             protocol: [
                 {
                     dataElement: "image.data",
@@ -32,10 +32,11 @@ export const bapps = [
     },
     {
         txId: "3e79ffb07d71c2248fb2356b67c9cb177a9f21de7a0d9ff3be6a71033b64fa03",
+        protocolAddress: "1Simsqfg7zu7uhgbaZoKjwKgsHCYEssBD",
         name: "Site Inspector",
         description: "Create an inspection report for a site",
         definition: {
-            bappVersion: 1,
+            version: 1,
             inputFields: {
                 name: {
                     type: "text",
@@ -57,7 +58,6 @@ export const bapps = [
                     upload: true // uploads files into b:// and references only txId's
                 }
             },
-            protocolAddress: "1Simsqfg7zu7uhgbaZoKjwKgsHCYEssBD",
             protocol: [
                 "${JSON.fields}"
             ],
