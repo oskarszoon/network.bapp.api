@@ -22,8 +22,8 @@ export const bapps = [
                 "${image.fileName}"
             ],
             template: '<div class="image"><img src="data:${s3};base64,${lb2}" /></div>',
-            encrypt: [1],
-            sign: [1],
+            encrypt: false,
+            sign: false,
             website: 'https://bitstagram.bitdb.network',
             logo: 'https://bitstagram.bitdb.network/bitstagram.png',
             icon: 'https://bitstagram.bitdb.network/bitstagram.png'
