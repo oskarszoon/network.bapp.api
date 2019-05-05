@@ -20,7 +20,7 @@ Meteor.methods({
 
         if (verifyTransaction(transaction)) {
             if (creditsAvailable(this.userId, transaction)) {
-                return sendTransaction(transaction);
+                return sendTransaction(this.userId, transaction);
             } else {
                 throw new Meteor.Error(500, 'No credits available for transaction');
             }

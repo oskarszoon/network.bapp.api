@@ -1,4 +1,4 @@
-const MAX_OP_RETURN = 100000;
+const MAX_OP_RETURN = 100000; // in hex
 export const verifyTransaction = function(transaction) {
     if (!_.isArray(transaction) || transaction.length < 2) {
         return false;
