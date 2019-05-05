@@ -1,13 +1,14 @@
 export const bapps = [
     {
         txId: "fa84be7e9e44dd1fa0ce9f85bf6e22265ba056f35dc23817883cff33af1f5f96",
-        name: "Bitstagram poster",
+        name: "Bitstagram",
         description: "Post an image from Bapps directly to the Bitstagram feed",
         definition: {
             bappVersion: 1,
             inputFields: {
                 image: {
                     type: "image",
+                    required: true,
                     output: "binary" // binary / base64
                 }
             },
@@ -38,15 +39,17 @@ export const bapps = [
             inputFields: {
                 name: {
                     type: "text",
-                    description: "Name of the site"
+                    description: "Name of the site",
+                    required: true,
                 },
                 location: {
-                    type: "location",
-                    description: "Location of the site report"
+                    type: "geo-device",
+                    description: "Location of the site report",
                 },
                 report: {
                     type: "text",
-                    description: "Site report"
+                    description: "Site report",
+                    required: true,
                 },
                 files: {
                     type: "image",
@@ -61,8 +64,8 @@ export const bapps = [
             encrypt: [1],
             sign: [1],
             website: 'https://inspector.bapps.network',
-            logo: 'https://api.bapps.network/images/inspector/logo.png',
-            icon: 'https://api.bapps.network/images/inspector/logo.png'
+            logo: 'https://api.bapp.network/images/inspector/logo.png',
+            icon: 'https://api.bapp.network/images/inspector/logo.png'
         }
     }
 ];
