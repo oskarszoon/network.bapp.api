@@ -2,6 +2,7 @@ import { getBapp } from '../imports/api/bapps/get';
 import { searchBapps } from '../imports/api/bapps/search';
 import { sendTransaction } from '../imports/api/transactions/send';
 import { verifyTransaction } from '../imports/api/transactions/verify';
+import { broadcastTransaction } from '../imports/api/schemas/transaction-queue';
 import { creditsAvailable, getCredits, addCredits } from '../imports/api/transactions/credits';
 import Message from 'bsv/message';
 import bsv from 'bsv';
@@ -88,5 +89,8 @@ Meteor.methods({
         return Meteor.users.insert({
             address: address
         });
+    },
+    'broadcast-transaction'(id) {
+        broadcastTransaction(id);
     }
 });
