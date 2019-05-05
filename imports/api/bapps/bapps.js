@@ -61,8 +61,8 @@ export const bapps = [
             encrypt: [1],
             sign: [1],
             website: 'https://inspector.bapps.network',
-            logo: 'https://inspector.bapps.network/inspector.png',
-            icon: 'https://inspector.bapps.network/inspector.png'
+            logo: 'https://api.bapps.network/images/inspector/logo.png',
+            icon: 'https://api.bapps.network/images/inspector/logo.png'
         }
     }
 ];
