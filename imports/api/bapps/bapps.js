@@ -6,13 +6,14 @@ export const bapps = [
         description: "Post an image from Bapps directly to the Bitstagram feed",
         definition: {
             version: 1,
-            inputFields: {
-                image: {
+            inputFields: [
+                {
+                    id: "image",
                     type: "image",
                     required: true,
                     output: "binary" // binary / base64
                 }
-            },
+            ],
             protocol: [
                 {
                     dataElement: "image.data",
@@ -36,13 +37,14 @@ export const bapps = [
         description: "Post any file to the blockchain",
         definition: {
             version: 1,
-            inputFields: {
-                file: {
+            inputFields: [
+                {
+                    id: "file",
                     type: "file",
                     required: true,
                     output: "binary" // binary / base64
                 }
-            },
+            ],
             protocol: [
                 {
                     dataElement: "file.data",
@@ -66,27 +68,31 @@ export const bapps = [
         description: "Create an inspection report for a site",
         definition: {
             version: 1,
-            inputFields: {
-                name: {
+            inputFields: [
+                {
+                    id: "name",
                     type: "text",
                     description: "Name of the site",
                     required: true,
                 },
-                location: {
+                {
+                    id: "location",
                     type: "geo-device",
                     description: "Location of the site report",
                 },
-                report: {
+                {
+                    id: "report",
                     type: "text",
                     description: "Site report",
                     required: true,
                 },
-                files: {
+                {
+                    id: "files",
                     type: "image",
                     multiple: true,
                     upload: true // uploads files into b:// and references only txId's
                 }
-            },
+            ],
             protocol: [
                 "${JSON.fields}"
             ],
