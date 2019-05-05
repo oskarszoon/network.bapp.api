@@ -11,16 +11,19 @@ export const bapps = [
                     output: "binary" // binary / base64
                 }
             },
+            protocolAddress: "19HxigV4QyBv3tHpQVcUEQyq1pzZVdoAut",
             protocol: [
-                "19HxigV4QyBv3tHpQVcUEQyq1pzZVdoAut",
-                "${image.data}",
+                {
+                    dataElement: "image.data",
+                    process: "base64atob"
+                },
                 "${image.type}",
                 "binary",
                 "${image.fileName}"
             ],
             template: '<div class="image"><img src="data:${s3};base64,${lb2}" /></div>',
-            encrypt: false,
-            sign: false,
+            encrypt: [1],
+            sign: [1],
             website: 'https://bitstagram.bitdb.network',
             logo: 'https://bitstagram.bitdb.network/bitstagram.png',
             icon: 'https://bitstagram.bitdb.network/bitstagram.png'
@@ -48,15 +51,15 @@ export const bapps = [
                 files: {
                     type: "image",
                     multiple: true,
-                    upload: true // uploads files and references only txId's
+                    upload: true // uploads files into b:// and references only txId's
                 }
             },
+            protocolAddress: "1Simsqfg7zu7uhgbaZoKjwKgsHCYEssBD",
             protocol: [
-                "1Simsqfg7zu7uhgbaZoKjwKgsHCYEssBD",
                 "${JSON.fields}"
             ],
-            encrypt: true,
-            sign: true,
+            encrypt: [1],
+            sign: [1],
             website: 'https://inspector.bapps.network',
             logo: 'https://inspector.bapps.network/inspector.png',
             icon: 'https://inspector.bapps.network/inspector.png'
