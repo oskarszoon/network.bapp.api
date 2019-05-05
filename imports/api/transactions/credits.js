@@ -19,12 +19,13 @@ export const creditsAvailable = function(userId, transaction) {
     return user.private && user.private.credits > creditsNeeded;
 };
 
-export const deductCredits = function(userId, transaction, txId) {
+export const deductCredits = function(userId, transaction, txId, encryptedSecret) {
     const creditCost = calcCreditsNeeded(transaction);
     Transactions.insert({
         txId,
         userId,
         creditCost,
+        encryptedSecret,
     });
 
     // TODO: move this into a database hook on transaction insert...

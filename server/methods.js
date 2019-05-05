@@ -13,14 +13,14 @@ Meteor.methods({
     'bapps/search'(searchTerm) {
         return searchBapps(searchTerm);
     },
-    'transactions/send'(transaction) {
+    'transactions/send'(transaction, encryptedSecret) {
         if (!this.userId) {
             throw new Meteor.Error(404, "access denied");
         }
 
         if (verifyTransaction(transaction)) {
             if (creditsAvailable(this.userId, transaction)) {
-                return sendTransaction(this.userId, transaction);
+                return sendTransaction(this.userId, transaction, encryptedSecret);
             } else {
                 throw new Meteor.Error(500, 'No credits available for transaction');
             }
