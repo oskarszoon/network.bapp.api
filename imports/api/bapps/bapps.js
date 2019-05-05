@@ -1,6 +1,6 @@
 export const bapps = [
     {
-        txId: "fa84be7e9e44dd1fa0ce9f85bf6e22265ba056f35dc23817883cff33af1f5f96",
+        txId: "ba84be7e9e44dd1fa0ce9f85bf6e22265ba056f35dc23817883cff33af1f5f96",
         protocolAddress: "19HxigV4QyBv3tHpQVcUEQyq1pzZVdoAut",
         name: "Bitstagram",
         description: "Post an image from Bapps directly to the Bitstagram feed",
@@ -26,8 +26,37 @@ export const bapps = [
             encrypt: false,
             sign: false,
             website: 'https://bitstagram.bitdb.network',
-            logo: 'https://bitstagram.bitdb.network/bitstagram.png',
-            icon: 'https://bitstagram.bitdb.network/bitstagram.png'
+            logo: 'https://bitstagram.bitdb.network/bitstagram.png'
+        }
+    },
+    {
+        txId: "fa84be7e9e44dd1fa0ce9f85bf6e22265ba056f35dc23817883cff33af1f5f96",
+        protocolAddress: "19HxigV4QyBv3tHpQVcUEQyq1pzZVdoAut",
+        name: "B protocol",
+        description: "Post any file to the blockchain",
+        definition: {
+            version: 1,
+            inputFields: {
+                file: {
+                    type: "file",
+                    required: true,
+                    output: "binary" // binary / base64
+                }
+            },
+            protocol: [
+                {
+                    dataElement: "file.data",
+                    process: "base64atob"
+                },
+                "${file.type}",
+                "binary",
+                "${file.fileName}"
+            ],
+            template: '<div class="file"><a href="b://${h}">${s5}</a></div>',
+            encrypt: false,
+            sign: false,
+            website: 'https://github.com/unwriter/B',
+            logo: 'https://api.bapp.network/images/b.png'
         }
     },
     {
@@ -64,8 +93,7 @@ export const bapps = [
             encrypt: [1],
             sign: [1],
             website: 'https://inspector.bapps.network',
-            logo: 'https://api.bapp.network/images/inspector/logo.png',
-            icon: 'https://api.bapp.network/images/inspector/logo.png'
+            logo: 'https://api.bapp.network/images/inspector/logo.png'
         }
     }
 ];
