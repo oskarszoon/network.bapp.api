@@ -1,3 +1,5 @@
+import { Random } from 'meteor/random';
+
 const Message = require('bsv/message');
 
 // Handler to login with a bitcoin address.
@@ -6,10 +8,15 @@ Accounts.registerLoginHandler("bitcoin", options => {
   if (! options.signature)
     return undefined; // don't handle
 
+  // This looks hacky as f...
+  const challenge = DDP._CurrentInvocation.get().connection.loginChallenge;
+  if (!challenge) {
+    throw new Meteor.Error(500, "Login challenge not set. Call get-login-challenge before logging in");
+  }
+
   check(options, {
     address: String,
     timestamp: Number,
-    challenge: String,
     signature: String
   });
 
@@ -17,7 +24,7 @@ Accounts.registerLoginHandler("bitcoin", options => {
     address: options.address
   });
   if (!user) {
-    handleError("User not found");
+    throw new Meteor.Error(404, "User not found");
   }
 
   const currentTimestamp = Math.round(+new Date()/1000);
@@ -26,7 +33,7 @@ Accounts.registerLoginHandler("bitcoin", options => {
   }
 
   // check signature
-  const message = '' + options.challenge + options.timestamp;
+  const message = '' + challenge + options.timestamp;
   if (!validSignature(options.address, message, options.signature)) {
     return {
       error: "Login incorrect"
@@ -36,6 +43,16 @@ Accounts.registerLoginHandler("bitcoin", options => {
   return {
     userId: user._id
   };
+});
+
+Meteor.methods({
+  'get-login-challenge'() {
+    const challenge = Random.secret();
+
+    this.connection.loginChallenge = challenge;
+
+    return challenge;
+  },
 });
 
 const validSignature = function(address, message, signature) {
