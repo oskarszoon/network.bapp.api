@@ -40,5 +40,16 @@ export const broadcastTransaction = function(transactionId) {
     }));
 };
 
-// TODO: Process queue
-//       Make sure to rotate the keys being used to send data
+Meteor.setInterval(() => {
+    // quick and naive implementation of the queue processing
+    // try every 60 seconds to send 1 transaction - just for being able to test
+    TransactionQueue.find({
+        broadcastAt: {
+            $exists: false
+        }
+    }, {
+        limit: 1
+    }).forEach((queueItem) => {
+        broadcastTransaction(queueItem._id);
+    });
+}, 60000);

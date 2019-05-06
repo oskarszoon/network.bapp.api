@@ -1,6 +1,6 @@
 import datapay from 'datapay';
 import { deductCredits } from './credits';
-import { TransactionQueue } from '../schemas/transaction-queue';
+import { TransactionQueue, broadcastTransaction } from '../schemas/transaction-queue';
 
 const _sendTransaction = function(userId, transaction, encryptedSecret, callback) {
     /*
@@ -32,7 +32,7 @@ const _sendTransaction = function(userId, transaction, encryptedSecret, callback
             console.log(transaction, tx.toObject());
             // Have to use a queue for now
             // Cannot send too many large transactions in 1 chain to the blockchain
-            TransactionQueue.insert({
+            const queueId = TransactionQueue.insert({
                 txId: tx.hash,
                 tx: tx.toString()
             }, (err) => {
@@ -40,6 +40,8 @@ const _sendTransaction = function(userId, transaction, encryptedSecret, callback
                     console.error(err);
                 } else {
                     deductCredits(userId, transaction, tx.hash, encryptedSecret);
+                    // try to broadcast the transaction
+                    broadcastTransaction(queueId);
                     callback(null, tx.hash);
                 }
             });
